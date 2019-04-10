@@ -1,19 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "queue.h"
 
 void err(int);
 void nuevoCliente(MQ q1); // Correcta
 int clientesAtendidos(MQ q1); // Correcta
-void promedioAtencion(MQ q1);
-void clientesTiempo(MQ q1);
-
-int rand(void);
-void srand(unsigned int semilla);
+void promedioAtencion(MQ q1); // Correcta
+void clientesTiempo(MQ q1); // Correcta
 
 
 
 int main(){
+    srand(time(NULL));
     MQ q1 = createQueue();
     int opc = 1, cA;
     while(opc != 2){
@@ -106,7 +105,7 @@ void nuevoCliente(MQ q1){
     printf("ID del cliente: ");
     scanf("%d", &cliente.id);
     (cliente.id) += 1000;
-    cliente.time = 1+(int) (20.0*rand()/(RAND_MAX+1.0));
+    cliente.time = rand()%20;
     push(q1, cliente);
 }
 
