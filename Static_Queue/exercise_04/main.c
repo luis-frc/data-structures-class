@@ -71,10 +71,11 @@ MQ mixQueues(MQ q1, MQ q2){
 }
 
 void printQueue(MQ q1){
-    int i;
+    int i = 0;
     printf("\n\nPrinting current queue\n");
-    for(i=0; i<(q1 -> size); i++){
-        printf("item(%d): %d \n", i, (q1->queue[i]));
+    while(emptyQueue(q1) == False){
+        i++;
+        printf("item(%d): %d \n", i, pop(q1));
     }
 }
 
