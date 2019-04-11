@@ -4,7 +4,6 @@
 
 void err(int);
 void requestElement(MQ q1);
-int sizeQueue(MQ q1);
 int sizeQueue1(MQ q1);
 MQ mixQueues(MQ q1, MQ q2, int size_q1, int size_q2);
 void printQueue(MQ q3);
@@ -46,7 +45,16 @@ void requestElement(MQ q1){
 }
 
 int sizeQueue1(MQ q1){
-    return (q1 -> size);
+    MQ a = createQueue();
+    int cont = 0;
+    while(emptyQueue(q1) == False){
+        cont++;
+        push(a, pop(q1));
+    }
+    while(emptyQueue(a) == False){
+        push(q1, pop(a));
+    }
+    return cont;
 }
 
 MQ mixQueues(MQ q1, MQ q2, int size_q1, int size_q2){
