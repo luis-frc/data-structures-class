@@ -3,47 +3,44 @@
 #include "queue.h"
 
 void err(int);
-void requestElement(MQ q1);
-void printQueue(MQ q1);
-int lastQueue(MQ q1);
-void printLast(int last_q1);
+void mostrar(int ultimo);
+int ultimoCola(MQ q1);
+void agregarDato(MQ q1);
 
-int main(int argc, char const *argv[]){
+int main(){
     MQ q1 = createQueue();
-    char opc = 'y';
-    int last_q1;
-    do {
-        requestElement(q1);
-        printf("You want to add new item? [y/n]: ");
+    char opc = 's';
+    int ultimo;
+    
+    while(opc != 'n'){
+        agregarDato(q1);
+        getchar();
+        printf("Nuevo dato? [s/n]:  ");
         scanf("%c", &opc);
-    } while(opc != 'n');
-    last_q1 = lastQueue(q1);
-    printLast(last_q1);
-    return False;
-}
-
-void requestElement(MQ q1){
-    int n;
-    printf("Type new item: ");
-    scanf("%d", &n);
-    push(q1, n);
-    getchar();
-}
-
-int lastQueue(MQ q1){
-    return (q1 -> queue[(q1 -> last)-1]);
-}
-
-void printLast(int last_q1){
-    printf("\nLast item is: %d\n", last_q1);
-}
-
-void printQueue(MQ q1){
-    int i;
-    printf("\n\nPrinting current queue\n");
-    for(i=0; i<(q1 -> size); i++){
-        printf("item(%d): %d \n", i, (q1->queue[i]));
     }
+    ultimo = ultimoCola(q1);
+    mostrar(ultimo);
+
+    return 0;
+}
+
+void mostrar(int ultimo){
+    printf("\nEl ultimo elemento agregado es -> %d \n", ultimo);
+}
+
+int ultimoCola(MQ q1){
+    int ultimo;
+    while(emptyQueue(q1) == False){
+        ultimo = pop(q1);
+    }
+    return ultimo;
+}
+
+void agregarDato(MQ q1){
+    int dato;
+    printf("\n\tValor del nuevo dato:  ");
+    scanf("%d", &dato);
+    push(q1, dato);
 }
 
 void err(int opc){
